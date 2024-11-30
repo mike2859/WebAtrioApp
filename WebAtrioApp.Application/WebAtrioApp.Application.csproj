@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WebAtrioApp.Core\WebAtrioApp.Core.csproj" />
+    <ProjectReference Include="..\WebAtrioApp.Infrastructure\WebAtrioApp.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAtrioApp.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using WebAtrioApp.Infrastructure.Data;
 namespace WebAtrioApp.Infrastructure.Migrations
 {
     [DbContext(typeof(WebAtrioDbContext))]
-    partial class WebAtrioDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241130101856_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,7 +52,7 @@ namespace WebAtrioApp.Infrastructure.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("Employments");
+                    b.ToTable("Jobs");
                 });
 
             modelBuilder.Entity("WebAtrioApp.Core.Entities.Person", b =>

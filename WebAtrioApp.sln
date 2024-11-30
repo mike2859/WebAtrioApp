@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAtrioApp", "WebAtrioApp\WebAtrioApp.csproj", "{B2490ACE-9F8A-4276-B3E0-995B4EAA3493}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAtrioApp.Api", "WebAtrioApp\WebAtrioApp.Api.csproj", "{B2490ACE-9F8A-4276-B3E0-995B4EAA3493}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAtrioApp.Application", "WebAtrioApp.Application\WebAtrioApp.Application.csproj", "{F10DF6DB-DA7C-41A9-8C05-C8FDEDF8279E}"
 EndProject

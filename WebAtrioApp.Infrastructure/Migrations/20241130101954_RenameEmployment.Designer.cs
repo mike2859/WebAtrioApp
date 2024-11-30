@@ -12,8 +12,8 @@ using WebAtrioApp.Infrastructure.Data;
 namespace WebAtrioApp.Infrastructure.Migrations
 {
     [DbContext(typeof(WebAtrioDbContext))]
-    [Migration("20241130093348_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241130101954_RenameEmployment")]
+    partial class RenameEmployment
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,13 +25,11 @@ namespace WebAtrioApp.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("WebAtrioApp.Core.Entities.Job", b =>
+            modelBuilder.Entity("WebAtrioApp.Core.Entities.Employment", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
@@ -40,8 +38,8 @@ namespace WebAtrioApp.Infrastructure.Migrations
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("PersonId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("PersonId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Position")
                         .IsRequired()
@@ -54,18 +52,16 @@ namespace WebAtrioApp.Infrastructure.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("Jobs");
+                    b.ToTable("Employments");
                 });
 
             modelBuilder.Entity("WebAtrioApp.Core.Entities.Person", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("BirthDate")
+                    b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
@@ -81,16 +77,16 @@ namespace WebAtrioApp.Infrastructure.Migrations
                     b.ToTable("Persons");
                 });
 
-            modelBuilder.Entity("WebAtrioApp.Core.Entities.Job", b =>
+            modelBuilder.Entity("WebAtrioApp.Core.Entities.Employment", b =>
                 {
                     b.HasOne("WebAtrioApp.Core.Entities.Person", null)
-                        .WithMany("Jobs")
+                        .WithMany("Employments")
                         .HasForeignKey("PersonId");
                 });
 
             modelBuilder.Entity("WebAtrioApp.Core.Entities.Person", b =>
                 {
-                    b.Navigation("Jobs");
+                    b.Navigation("Employments");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,4 @@
-﻿namespace WebAtrioApp.Core.Entities;
+﻿namespace WebAtrioApp.Application.DTOs;
 
 public class Job
 {

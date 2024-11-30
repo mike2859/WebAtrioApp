@@ -15,16 +15,23 @@ public class PersonRepository : IPersonRepository
         _dbContext = dbContext;
     }
 
-    public async Task AddAsync(Person person)
+    public async Task<Guid> AddAsync(Person person)
     {
+        if (person == null)
+            throw new ArgumentNullException(nameof(person));
+
         await _dbContext.Persons.AddAsync(person);
         await _dbContext.SaveChangesAsync();
+
+        return person.Id;
     }
 
-    public async Task UpdateAsync(Person person)
+    public async Task<Guid> UpdateAsync(Person person)
     {
         _dbContext.Persons.Update(person);
         await _dbContext.SaveChangesAsync();
+
+        return person.Id;
     }
 
     public async Task<Person?> GetByIdAsync(Guid id)
@@ -63,5 +70,10 @@ public class PersonRepository : IPersonRepository
         return person.Employments
             .Where(e => e.StartDate <= endDate && (e.EndDate == null || e.EndDate >= startDate))
             .ToList();
+    }
+
+    public async Task<Person?> GetPersonByIdAsync(Guid id)
+    {
+      return await _dbContext.Persons.FirstOrDefaultAsync(p => p.Id == id); 
     }
 }

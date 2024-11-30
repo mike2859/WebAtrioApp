@@ -45,6 +45,14 @@ namespace WebAtrioApp
                 app.UseSwaggerUI();
             }
 
+            // Appliquez les migrations au démarrage
+            using (var scope = app.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<WebAtrioDbContext>();
+                dbContext.Database.Migrate();  // Applique les migrations en cours
+            }
+
+
             app.UseHttpsRedirection();
 
             // Activation des contrôleurs API
@@ -52,25 +60,6 @@ namespace WebAtrioApp
 
             app.UseAuthorization();
 
-            //var summaries = new[]
-            //{
-            //    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-            //};
-
-            //app.MapGet("/weatherforecast", (HttpContext httpContext) =>
-            //{
-            //    var forecast = Enumerable.Range(1, 5).Select(index =>
-            //        new WeatherForecast
-            //        {
-            //            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            //            TemperatureC = Random.Shared.Next(-20, 55),
-            //            Summary = summaries[Random.Shared.Next(summaries.Length)]
-            //        })
-            //        .ToArray();
-            //    return forecast;
-            //})
-            //.WithName("GetWeatherForecast")
-            //.WithOpenApi();
 
             app.Run();
         }

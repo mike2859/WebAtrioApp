@@ -57,5 +57,19 @@ namespace WebAtrioApp.Api.Controllers
             var persons = await _personService.GetPersonsByCompanyAsync(companyName);
             return Ok(persons);
         }
+
+        [HttpGet("person/{personId}/employments")]
+        public async Task<IActionResult> GetEmploymentsByDateRange(Guid personId, [FromQuery] DateTime startDate, [FromQuery] DateTime endDate)
+        {
+            try
+            {
+                var employments = await _personService.GetEmploymentsByDateRangeAsync(personId, startDate, endDate);
+                return Ok(employments);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
     }
 }

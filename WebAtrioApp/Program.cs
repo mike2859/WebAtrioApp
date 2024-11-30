@@ -24,7 +24,8 @@ namespace WebAtrioApp
             builder.Services.AddDbContext<WebAtrioDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-
+            //builder.Services.AddDbContext<WebAtrioDbContext>(options =>
+            //    options.UseInMemoryDatabase("DefaultConnection"));
 
 
             // Ajout des services pour le projet, avec l'injection des dépendances

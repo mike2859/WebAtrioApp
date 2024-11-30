@@ -33,6 +33,9 @@ public class PersonServiceTests
         mockPersonRepository.Setup(repo => repo.AddAsync(It.IsAny<Person>()))
             .ReturnsAsync(newPerson.Id); // Correct ici : renvoie un GUID
 
+
+        var personService = new PersonService(mockPersonRepository.Object);
+
         // Act
         var result = await _personService.AddPersonAsync(newPerson.FirstName, newPerson.LastName, newPerson.DateOfBirth);
 
